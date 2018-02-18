@@ -8,8 +8,8 @@ from pyconnectedcars.GPS import GPS, Odometer
 
 
 class Controller:
-    def __init__(self, email, password, update_interval):
-        self.__connection = Connection(email, password)
+    def __init__(self, email, password, update_interval, baseurl=""):
+        self.__connection = Connection(email, password, baseurl)
         self.__vehicles = []
         self.update_interval = update_interval
         self.__car = {}
