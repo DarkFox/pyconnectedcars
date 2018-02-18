@@ -10,7 +10,7 @@ class Fuel(VehicleDevice):
 
         self.last_updated = 0
 
-        self.type = 'fuel sensor'
+        self.type = 'fuel level'
         self.measurement = 'VOLUME_LITERS'
         self.hass_type = 'sensor'
         self.name = self._name()

@@ -44,7 +44,7 @@ class Odometer(VehicleDevice):
         self.__odometer = 0
         self.last_updated = 0
 
-        self.type = 'mileage sensor'
+        self.type = 'mileage'
         self.measurement = 'LENGTH_KILOMETERS'
         self.hass_type = 'sensor'
         self.name = self._name()

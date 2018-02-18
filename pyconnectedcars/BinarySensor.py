@@ -11,7 +11,7 @@ class SystemsAreOkSensor(VehicleDevice):
 
         self.last_updated = None
 
-        self.type = 'system ok sensor'
+        self.type = 'system ok'
         self.hass_type = 'binary_sensor'
         self.name = self._name()
         self.uniq_name = self._uniq_name()
@@ -42,7 +42,7 @@ class OilLevelIsOkSensor(VehicleDevice):
 
         self.last_updated = None
 
-        self.type = 'oil level sensor'
+        self.type = 'oil level'
         self.hass_type = 'binary_sensor'
         self.name = self._name()
         self.uniq_name = self._uniq_name()
@@ -71,7 +71,7 @@ class TirePressureIsOkSensor(VehicleDevice):
 
         self.last_updated = None
 
-        self.type = 'tire pressure sensor'
+        self.type = 'tire pressure'
         self.hass_type = 'binary_sensor'
         self.name = self._name()
         self.uniq_name = self._uniq_name()
@@ -100,7 +100,7 @@ class BatteryChargeIsOkSensor(VehicleDevice):
 
         self.last_updated = None
 
-        self.type = 'battery charge sensor'
+        self.type = 'battery charge'
         self.hass_type = 'binary_sensor'
         self.name = self._name()
         self.uniq_name = self._uniq_name()
