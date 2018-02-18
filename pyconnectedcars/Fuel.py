@@ -6,7 +6,7 @@ class Fuel(VehicleDevice):
     def __init__(self, data, controller):
         super().__init__(data, controller)
         self.__fuel_level = 0
-        self.__fuel_level_pct = 0
+        self.fuel_level_pct = 0
 
         self.last_updated = 0
 
@@ -23,7 +23,7 @@ class Fuel(VehicleDevice):
         data = self._controller.get_car_params(self._id)
         if data:
             self.__fuel_level = data['fuelLevelLiter']
-            self.__fuel_level_pct = data['fuelLevel']
+            self.fuel_level_pct = data['fuelLevel']
             self.last_updated = datetime.datetime.strptime(data['fuelLevelUpdatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     @staticmethod
