@@ -1,7 +1,7 @@
 from setuptools import setup
 setup(
     name='pyconnectedcars',
-    version='0.1.6',
+    version='0.1.7',
     packages=['pyconnectedcars'],
     include_package_data=True,
     python_requires='>=3',
