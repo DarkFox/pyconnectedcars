@@ -1,5 +1,5 @@
 from pyconnectedcars.vehicle import VehicleDevice
-import dateutil.parser as parser
+import datetime
 
 
 class Lock(VehicleDevice):
@@ -24,7 +24,7 @@ class Lock(VehicleDevice):
                 self.__lock_state = False
             else:
                 self.__lock_state = True
-            self.last_updated = parser.parse(data['fuelLevelUpdatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['lockedStateUpdatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def is_locked(self):
         return self.__lock_state

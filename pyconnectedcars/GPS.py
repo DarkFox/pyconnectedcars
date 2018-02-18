@@ -1,5 +1,5 @@
 from pyconnectedcars.vehicle import VehicleDevice
-import dateutil.parser
+import datetime
 
 
 class GPS(VehicleDevice):
@@ -28,7 +28,7 @@ class GPS(VehicleDevice):
         if data:
             self.__longitude = data['long']
             self.__latitude = data['lat']
-            self.last_updated = dateutil.parser.parse(data['updatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
         if self.__longitude and self.__latitude:
             self.__location = {'longitude': self.__longitude,
                                'latitude': self.__latitude}
@@ -58,7 +58,7 @@ class Odometer(VehicleDevice):
         data = self._controller.get_car_params(self._id)
         if data:
             self.__odometer = data['odometer']
-            self.last_updated = dateutil.parser.parse(data['updatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     @staticmethod
     def has_battery():

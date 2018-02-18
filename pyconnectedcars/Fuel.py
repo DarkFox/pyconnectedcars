@@ -1,5 +1,5 @@
 from pyconnectedcars.vehicle import VehicleDevice
-import dateutil.parser
+import datetime
 
 
 class Fuel(VehicleDevice):
@@ -24,8 +24,7 @@ class Fuel(VehicleDevice):
         if data:
             self.__fuel_level = data['fuelLevelLiter']
             self.__fuel_level_pct = data['fuelLevel']
-            self.last_updated = dateutil.parser.parse(
-                data['fuelLevelUpdatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['fuelLevelUpdatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     @staticmethod
     def has_battery():

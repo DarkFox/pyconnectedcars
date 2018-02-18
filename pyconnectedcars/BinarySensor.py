@@ -1,5 +1,5 @@
 from pyconnectedcars.vehicle import VehicleDevice
-import dateutil.parser
+import datetime
 
 
 class SystemsAreOkSensor(VehicleDevice):
@@ -25,7 +25,7 @@ class SystemsAreOkSensor(VehicleDevice):
             self.__state = data['systemsAreOk']
             self.lamps = data['lamps']
             self.indicators = data['incidents']
-            self.last_updated = dateutil.parser.parse(data['fuelLevelUpdatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
         return self.__state
@@ -54,7 +54,7 @@ class OilLevelIsOkSensor(VehicleDevice):
         data = self._controller.get_car_params(self._id)
         if data:
             self.__state = data['oilLevelIsOk']
-            self.last_updated = dateutil.parser.parse(data['fuelLevelUpdatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
         return self.__state
@@ -83,7 +83,7 @@ class TirePressureIsOkSensor(VehicleDevice):
         data = self._controller.get_car_params(self._id)
         if data:
             self.__state = data['tirePressureIsOk']
-            self.last_updated = dateutil.parser.parse(data['fuelLevelUpdatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
         return self.__state
@@ -112,7 +112,7 @@ class BatteryChargeIsOkSensor(VehicleDevice):
         data = self._controller.get_car_params(self._id)
         if data:
             self.__state = data['batteryChargeIsOk']
-            self.last_updated = dateutil.parser.parse(data['fuelLevelUpdatedAt'])
+            self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
         return self.__state

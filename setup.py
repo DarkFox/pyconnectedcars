@@ -1,13 +1,10 @@
 from setuptools import setup
 setup(
     name='pyconnectedcars',
-    version='0.1.4',
+    version='0.1.5',
     packages=['pyconnectedcars'],
     include_package_data=True,
     python_requires='>=3',
-    install_requires=[
-        'python-dateutil',
-    ],
     license='MIT',
     description='A library to work with Connected Cars API.',
     long_description='A library to work with Connected Cars car API.',
