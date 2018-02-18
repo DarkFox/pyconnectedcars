@@ -51,7 +51,6 @@ class Connection(object):
         data = json.loads(resp.read().decode(charset))
         opener.close()
         # TODO: Parse errors, because why use HTTP error codes...
-        print(data)
         if data.get('errors'):
             raise ConnectedCarsException(
                 data['errors'][0]['message'], data['errors'])
