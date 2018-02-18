@@ -22,7 +22,7 @@ class SystemsAreOkSensor(VehicleDevice):
         self._controller.update()
         data = self._controller.get_car_params(self._id)
         if data:
-            self.__state = data['systemsAreOk']
+            self.__state = not data['systemsAreOk']
             self.lamps = data['lamps']
             self.indicators = data['incidents']
             self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
@@ -53,7 +53,7 @@ class OilLevelIsOkSensor(VehicleDevice):
         self._controller.update()
         data = self._controller.get_car_params(self._id)
         if data:
-            self.__state = data['oilLevelIsOk']
+            self.__state = not data['oilLevelIsOk']
             self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
@@ -82,7 +82,7 @@ class TirePressureIsOkSensor(VehicleDevice):
         self._controller.update()
         data = self._controller.get_car_params(self._id)
         if data:
-            self.__state = data['tirePressureIsOk']
+            self.__state = not data['tirePressureIsOk']
             self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
@@ -111,7 +111,7 @@ class BatteryChargeIsOkSensor(VehicleDevice):
         self._controller.update()
         data = self._controller.get_car_params(self._id)
         if data:
-            self.__state = data['batteryChargeIsOk']
+            self.__state = not data['batteryChargeIsOk']
             self.last_updated = datetime.datetime.strptime(data['updatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
 
     def get_value(self):
