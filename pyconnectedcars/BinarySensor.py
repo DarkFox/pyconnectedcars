@@ -120,3 +120,35 @@ class BatteryChargeIsOkSensor(VehicleDevice):
     @staticmethod
     def has_battery():
         return False
+
+
+class LockSensor(VehicleDevice):
+    def __init__(self, data, controller):
+        super().__init__(data, controller)
+        self.__state = False
+
+        self.last_updated = None
+
+        self.type = 'lock'
+        self.hass_type = 'binary_sensor'
+        self.name = self._name()
+        self.uniq_name = self._uniq_name()
+        self.bin_type = 0x1
+        self.update()
+
+    def update(self):
+        self._controller.update()
+        data = self._controller.get_car_params(self._id)
+        if data:
+            if data['lockedState'] == 'UNLOCKED':
+                self.__state = False
+            else:
+                self.__state = True
+            self.last_updated = datetime.datetime.strptime(data['lockedStateUpdatedAt'], "%Y-%m-%dT%H:%M:%S.%fZ")
+
+    def get_value(self):
+        return self.__state
+
+    @staticmethod
+    def has_battery():
+        return False

@@ -2,8 +2,7 @@ import time
 from multiprocessing import RLock
 from pyconnectedcars.connection import Connection
 from pyconnectedcars.Fuel import Fuel
-from pyconnectedcars.Lock import Lock
-from pyconnectedcars.BinarySensor import SystemsAreOkSensor, OilLevelIsOkSensor, TirePressureIsOkSensor, BatteryChargeIsOkSensor
+from pyconnectedcars.BinarySensor import SystemsAreOkSensor, OilLevelIsOkSensor, TirePressureIsOkSensor, BatteryChargeIsOkSensor, LockSensor
 from pyconnectedcars.GPS import GPS, Odometer
 
 
@@ -18,13 +17,13 @@ class Controller:
         self.update()
         for car_id, car in self.__car.items():
             self.__vehicles.append(Fuel(car, self))
-            self.__vehicles.append(Lock(car, self))
             self.__vehicles.append(GPS(car, self))
             self.__vehicles.append(Odometer(car, self))
             self.__vehicles.append(SystemsAreOkSensor(car, self))
             self.__vehicles.append(OilLevelIsOkSensor(car, self))
             self.__vehicles.append(TirePressureIsOkSensor(car, self))
             self.__vehicles.append(BatteryChargeIsOkSensor(car, self))
+            self.__vehicles.append(LockSensor(car, self))
 
     def get(self):
         self.__last_update_time = time.time()
